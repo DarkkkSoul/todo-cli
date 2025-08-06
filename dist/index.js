@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const readline_1 = __importDefault(require("readline"));
+const manager_1 = require("./utils/manager");
 const rl = readline_1.default.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -14,34 +15,30 @@ function showMenu() {
     console.log('3. Delete Todo');
     console.log('4. Exit');
 }
-function action() {
+function prompt() {
     showMenu();
     rl.question('Choose an option:', (option) => {
         switch (option) {
             case '1':
-                console.log('Added Todo...');
-                showMenu();
+                (0, manager_1.addTodo)();
                 break;
             case '2':
-                console.log('Viewing Todos...');
-                showMenu();
+                (0, manager_1.viewTodo)();
                 break;
             case '3':
-                console.log('Deleted Todo...');
-                showMenu();
+                (0, manager_1.deleteTodo)();
                 break;
             case '4':
-                console.log('Exiting...');
                 rl.close();
-                return;
+                break;
             default:
                 console.log('Invalid option. Please try again.');
-                action();
+                prompt();
         }
     });
 }
 function main() {
     console.log('Welcome to the Todo CLI!');
-    action();
+    prompt();
 }
 main();

@@ -5,22 +5,43 @@ const rl = readline.createInterface({
    output: process.stdout
 });
 
+function showMenu() {
+   console.log('1. Add Todo');
+   console.log('2. View Todos');
+   console.log('3. Delete Todo');
+   console.log('4. Exit');
+}
 
-function getAge(): Promise<string> {
-   return new Promise((resolve) => {
-      rl.question('What is your age? ', (answer: string) => {
-         age = answer;
-         rl.close();
-         resolve(age);
-      });
+function prompt() {
+   showMenu();
+   rl.question('Choose an option:', (option: string) => {
+      switch (option) {
+         case '1':
+            console.log('Added Todo...');
+            showMenu();
+            break;
+         case '2':
+            console.log('Viewing Todos...');
+            showMenu();
+            break;
+         case '3':
+            console.log('Deleted Todo...');
+            showMenu();
+            break;
+         case '4':
+            console.log('Exiting...');
+            rl.close();
+            return;
+         default:
+            console.log('Invalid option. Please try again.');
+            action();
+      }
    });
 }
 
-let age: string;
-
-async function main() {
-   age = await getAge();
-   console.log(`Your age is: ${age}`);
-};
+function main() {
+   console.log('Welcome to the Todo CLI!');
+   prompt();
+}
 
 main();

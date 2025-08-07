@@ -18,17 +18,23 @@ function showMenu() {
 function prompt() {
     showMenu();
     rl.question('Choose an option:', (option) => {
-        switch (option) {
+        switch (option.trim()) {
             case '1':
-                (0, manager_1.addTodo)();
+                rl.question('Enter title:', (title) => {
+                    (0, manager_1.addTodo)(title.trim());
+                    prompt();
+                });
                 break;
             case '2':
                 (0, manager_1.viewTodo)();
+                prompt();
                 break;
             case '3':
                 (0, manager_1.deleteTodo)();
+                prompt();
                 break;
             case '4':
+                console.log('Exiting...');
                 rl.close();
                 break;
             default:

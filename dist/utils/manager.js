@@ -3,11 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addTodo = addTodo;
 exports.viewTodo = viewTodo;
 exports.deleteTodo = deleteTodo;
-function addTodo() {
-    console.log('Adding Todo');
+let todos = [];
+function addTodo(title) {
+    todos.push({ title, done: false });
 }
 function viewTodo() {
-    console.log('Loading todos');
+    todos.forEach((todo) => {
+        console.log(todo.title, '\n');
+    });
 }
 function deleteTodo() {
     console.log('Deleting Todo');

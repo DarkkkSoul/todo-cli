@@ -1,5 +1,5 @@
 import readline from 'readline';
-import { addTodo, deleteTodo, viewTodo } from './utils/manager';
+import { addTodo, markDone, viewTodo } from './utils/manager';
 
 const rl = readline.createInterface({
    input: process.stdin,
@@ -9,24 +9,31 @@ const rl = readline.createInterface({
 function showMenu() {
    console.log('1. Add Todo');
    console.log('2. View Todos');
-   console.log('3. Delete Todo');
+   console.log('3. Mark as Done');
    console.log('4. Exit');
 }
 
-function prompt() {
+function prompt(): void {
    showMenu();
-   rl.question('Choose an option:', (option: string) => {
-      switch (option) {
+   rl.question('Choose an option:', (option) => {
+      switch (option.trim()) {
          case '1':
-            addTodo();
+            rl.question('Enter title:', (title) => {
+               addTodo(title.trim());
+               prompt();
+            });
             break;
          case '2':
             viewTodo();
+            prompt();
             break;
          case '3':
-            deleteTodo();
+            prompt();
+            markDone();
+            prompt();
             break;
          case '4':
+            console.log('Exiting...');
             rl.close();
             break;
          default:

@@ -28,9 +28,11 @@ function prompt(): void {
             prompt();
             break;
          case '3':
-            prompt();
-            markDone();
-            prompt();
+            viewTodo();
+            rl.question('Enter id of the Todo to be marked as Completed:', (id) => {
+               markDone(Number(id));
+               prompt();
+            });
             break;
          case '4':
             console.log('Exiting...');

@@ -4,14 +4,21 @@ exports.addTodo = addTodo;
 exports.viewTodo = viewTodo;
 exports.markDone = markDone;
 let todos = [];
+let id = 1;
 function addTodo(title) {
-    todos.push({ title, done: false });
+    todos.push({ id: id++, title, done: false, createdOn: new Date() });
 }
 function viewTodo() {
+    console.log('Todos');
+    console.log('ID', '\t', 'Status', '\t', 'Title', '\t', 'Created On', '\n');
     todos.forEach((todo) => {
-        console.log(todo.title, '\n');
+        console.log(todo.id, '\t', todo.done, '\t\t', todo.title, '\t', todo.createdOn, '\n');
     });
 }
-function markDone() {
-    console.log('Deleting Todo');
+function markDone(id) {
+    todos.forEach((todo) => {
+        if (id === todo.id) {
+            todo.done = true;
+        }
+    });
 }

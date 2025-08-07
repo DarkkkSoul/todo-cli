@@ -30,9 +30,11 @@ function prompt() {
                 prompt();
                 break;
             case '3':
-                prompt();
-                (0, manager_1.markDone)();
-                prompt();
+                (0, manager_1.viewTodo)();
+                rl.question('Enter id of the Todo to be marked as Completed:', (id) => {
+                    (0, manager_1.markDone)(Number(id));
+                    prompt();
+                });
                 break;
             case '4':
                 console.log('Exiting...');

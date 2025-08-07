@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addTodo = addTodo;
 exports.viewTodo = viewTodo;
-exports.deleteTodo = deleteTodo;
+exports.markDone = markDone;
 let todos = [];
 function addTodo(title) {
     todos.push({ title, done: false });
@@ -12,6 +12,6 @@ function viewTodo() {
         console.log(todo.title, '\n');
     });
 }
-function deleteTodo() {
+function markDone() {
     console.log('Deleting Todo');
 }

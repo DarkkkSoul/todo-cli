@@ -12,7 +12,7 @@ const rl = readline_1.default.createInterface({
 function showMenu() {
     console.log('1. Add Todo');
     console.log('2. View Todos');
-    console.log('3. Delete Todo');
+    console.log('3. Mark as Done');
     console.log('4. Exit');
 }
 function prompt() {
@@ -30,7 +30,8 @@ function prompt() {
                 prompt();
                 break;
             case '3':
-                (0, manager_1.deleteTodo)();
+                prompt();
+                (0, manager_1.markDone)();
                 prompt();
                 break;
             case '4':

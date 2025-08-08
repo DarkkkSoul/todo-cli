@@ -1,6 +1,9 @@
 {
   "name": "todo-cli",
   "version": "1.0.0",
+  "bin": {
+    "todo": "./dist/index.js"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {

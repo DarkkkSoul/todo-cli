@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import readline from 'readline';
 import { addTodo, init, markDone, resetTodos, viewTodo } from './utils/manager';
 import { guidelines } from './utils/guidelines';

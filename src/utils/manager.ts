@@ -25,7 +25,7 @@ export function init(): void {
 
 export function addTodo(title: string): void {
    todos.push({ id: id++, title, done: false, createdOn: new Date() });
-   console.log('SUCCESSFULLY ADDED A NEW TODO!');
+   console.log('\nSUCCESSFULLY ADDED A NEW TODO!');
    saveTodosToFile();
 }
 

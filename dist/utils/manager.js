@@ -29,7 +29,7 @@ function init() {
 }
 function addTodo(title) {
     todos.push({ id: id++, title, done: false, createdOn: new Date() });
-    console.log('SUCCESSFULLY ADDED A NEW TODO!');
+    console.log('\nSUCCESSFULLY ADDED A NEW TODO!');
     saveTodosToFile();
 }
 function viewTodo() {

@@ -6,7 +6,7 @@ let todos: Todo[] = [];
 let id: number = 1;
 const FILE_PATH = path.join(__dirname, "..", "todos.json");
 
-function loadTodosFromFile() {
+function loadTodosFromFile(): void {
    if (fs.existsSync(FILE_PATH)) {
       const data = fs.readFileSync(FILE_PATH, "utf-8");
       todos = JSON.parse(data) as Todo[];
@@ -15,11 +15,11 @@ function loadTodosFromFile() {
    }
 }
 
-function saveTodosToFile() {
+function saveTodosToFile(): void {
    fs.writeFileSync(FILE_PATH, JSON.stringify(todos, null, 2), "utf-8");
 }
 
-export function init() {
+export function init(): void {
    loadTodosFromFile();
 }
 

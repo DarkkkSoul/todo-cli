@@ -9,7 +9,7 @@ export function guidelines(): void {
    console.log('5. Exit: Exit the application.');
    console.log('To use the application, simply follow the prompts after selecting an option.');
    console.log('\n');
-   console.log('******* Important Note *******: The todos will automatically get deleted every 24hours.');
+   console.log('******* Important Note *******:\n1. The todos are stored locally onto your machine in todos.json file \n2.The todos will automatically get deleted every 24hours.');
    console.log('For any issues or feedback, message - https://x.com/drcsoul');
    console.log('\n');
    console.log('--- End of Guidelines ---\n');

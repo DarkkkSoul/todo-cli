@@ -11,23 +11,20 @@ const rl = readline_1.default.createInterface({
     output: process.stdout
 });
 function showMenu() {
-    console.log('\n');
+    console.log('------------------------------------------------');
     console.log('1. Add a Todo');
     console.log('2. View the Todos');
     console.log('3. Mark as Completed');
     console.log('4. Reset the Todos');
     console.log('5. Exit');
-    console.log('\n');
+    console.log('------------------------------------------------');
 }
 function prompt() {
-    (0, guidelines_1.guidelines)();
-    console.log('Please select an option from the menu:');
-    console.log('------------------------------------------------');
     showMenu();
     rl.question('Choose an option: ', (option) => {
         switch (option.trim()) {
             case '1':
-                rl.question('Enter title: ', (title) => {
+                rl.question('Enter todo title: ', (title) => {
                     (0, manager_1.addTodo)(title.trim());
                     prompt();
                 });
@@ -60,6 +57,8 @@ function prompt() {
 function main() {
     console.log('WELCOME to the TODO CLI!');
     console.log('This application allows you to manage your todos easily.');
+    (0, guidelines_1.guidelines)();
+    console.log('Please select an option from the menu:');
     (0, manager_1.init)();
     prompt();
 }

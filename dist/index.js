@@ -53,7 +53,7 @@ function prompt() {
 }
 function main() {
     console.log('Welcome to the Todo CLI!');
-    (0, manager_1.clearOldTodos)();
+    (0, manager_1.init)();
     prompt();
 }
 main();

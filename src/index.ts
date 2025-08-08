@@ -1,5 +1,5 @@
 import readline from 'readline';
-import { addTodo, clearOldTodos, markDone, resetTodos, viewTodo } from './utils/manager';
+import { addTodo, init, markDone, resetTodos, viewTodo } from './utils/manager';
 
 const rl = readline.createInterface({
    input: process.stdin,
@@ -52,7 +52,7 @@ function prompt(): void {
 
 function main() {
    console.log('Welcome to the Todo CLI!');
-   clearOldTodos();
+   init();
    prompt();
 }
 

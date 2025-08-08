@@ -1,5 +1,5 @@
 import readline from 'readline';
-import { addTodo, markDone, viewTodo } from './utils/manager';
+import { addTodo, clearOldTodos, markDone, resetTodos, viewTodo } from './utils/manager';
 
 const rl = readline.createInterface({
    input: process.stdin,
@@ -10,7 +10,8 @@ function showMenu() {
    console.log('1. Add Todo');
    console.log('2. View Todos');
    console.log('3. Mark as Done');
-   console.log('4. Exit');
+   console.log('4. Reset Todos');
+   console.log('5. Exit');
 }
 
 function prompt(): void {
@@ -35,6 +36,10 @@ function prompt(): void {
             });
             break;
          case '4':
+            resetTodos();
+            prompt();
+            break;
+         case '5':
             console.log('Exiting...');
             rl.close();
             break;
@@ -47,6 +52,7 @@ function prompt(): void {
 
 function main() {
    console.log('Welcome to the Todo CLI!');
+   clearOldTodos();
    prompt();
 }
 

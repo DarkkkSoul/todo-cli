@@ -13,7 +13,8 @@ function showMenu() {
     console.log('1. Add Todo');
     console.log('2. View Todos');
     console.log('3. Mark as Done');
-    console.log('4. Exit');
+    console.log('4. Reset Todos');
+    console.log('5. Exit');
 }
 function prompt() {
     showMenu();
@@ -37,6 +38,10 @@ function prompt() {
                 });
                 break;
             case '4':
+                (0, manager_1.resetTodos)();
+                prompt();
+                break;
+            case '5':
                 console.log('Exiting...');
                 rl.close();
                 break;
@@ -48,6 +53,7 @@ function prompt() {
 }
 function main() {
     console.log('Welcome to the Todo CLI!');
+    (0, manager_1.clearOldTodos)();
     prompt();
 }
 main();

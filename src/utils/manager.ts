@@ -1,10 +1,17 @@
 import { Todo } from "./todo";
 import fs from "fs";
 import path from "path";
+import os from "os";
+
 
 let todos: Todo[] = [];
 let id: number = 1;
-const FILE_PATH = path.join(__dirname, "..", "todos.json");
+const CONFIG_DIR = path.join(os.homedir(), ".my-todo-cli");
+const FILE_PATH = path.join(CONFIG_DIR, "todos.json");
+
+if (!fs.existsSync(CONFIG_DIR)) {
+   fs.mkdirSync(CONFIG_DIR);
+}
 
 function loadTodosFromFile(): void {
    if (fs.existsSync(FILE_PATH)) {

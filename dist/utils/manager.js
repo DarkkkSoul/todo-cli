@@ -29,16 +29,22 @@ function init() {
 }
 function addTodo(title) {
     todos.push({ id: id++, title, done: false, createdOn: new Date() });
+    console.log('SUCCESSFULLY ADDED A NEW TODO!');
     saveTodosToFile();
 }
 function viewTodo() {
     clearOldTodos();
-    console.log('Todos');
-    console.log('ID', '\t', 'Status', '\t', 'Title', '\t', 'Created On', '\n');
-    todos.forEach((todo) => {
-        const createdOn = new Date(todo.createdOn);
-        console.log(todo.id, '\t', todo.done ? 'done' : 'not done', '\t', todo.title, '\t', createdOn.getDate(), '\n');
-    });
+    if (todos.length === 0) {
+        console.log('NO TODOS FOUND!');
+        return;
+    }
+    else {
+        console.log('YOUR TODOS:');
+        console.log('ID', '\t', 'Status', '\t', 'Title', '\n');
+        todos.forEach((todo) => {
+            console.log(todo.id, '\t', todo.done ? '✔' : ' ', '\t\t', todo.title, '\n');
+        });
+    }
 }
 function markDone(id) {
     todos.forEach((todo) => {
@@ -47,12 +53,14 @@ function markDone(id) {
             saveTodosToFile();
         }
     });
+    console.log('MARKING TODO AS DONE!');
 }
 function resetTodos() {
     while (todos.length > 0) {
         todos.pop();
     }
     id = 1;
+    console.log('RESETING TODOS!');
     saveTodosToFile();
 }
 function clearOldTodos() {
@@ -60,5 +68,6 @@ function clearOldTodos() {
         const createdOn = new Date(todo.createdOn);
         return createdOn.getDate() >= new Date().getDate();
     });
+    console.log('CLEARING OLD TODOS!');
     saveTodosToFile();
 }

@@ -10,11 +10,8 @@ function loadTodosFromFile() {
    if (fs.existsSync(FILE_PATH)) {
       const data = fs.readFileSync(FILE_PATH, "utf-8");
       todos = JSON.parse(data) as Todo[];
-      // Update nextId to avoid duplicates
       const maxId = todos.reduce((max, todo) => Math.max(max, todo.id), 0);
       id = maxId + 1;
-
-
    }
 }
 
@@ -28,18 +25,22 @@ export function init() {
 
 export function addTodo(title: string): void {
    todos.push({ id: id++, title, done: false, createdOn: new Date() });
+   console.log('SUCCESSFULLY ADDED A NEW TODO!');
    saveTodosToFile();
 }
 
 export function viewTodo(): void {
    clearOldTodos();
-   // console.log('Directory name', __dirname);
-   console.log('Todos');
-   console.log('ID', '\t', 'Status', '\t', 'Title', '\t', 'Created On', '\n');
-   todos.forEach((todo) => {
-      const createdOn = new Date(todo.createdOn);
-      console.log(todo.id, '\t', todo.done ? 'done' : 'not done', '\t', todo.title, '\t', createdOn.getDate(), '\n');
-   });
+   if (todos.length === 0) {
+      console.log('NO TODOS FOUND!');
+      return;
+   } else {
+      console.log('YOUR TODOS:');
+      console.log('ID', '\t', 'Status', '\t', 'Title', '\n');
+      todos.forEach((todo) => {
+         console.log(todo.id, '\t', todo.done ? '✔' : ' ', '\t\t', todo.title, '\n');
+      });
+   }
 }
 
 export function markDone(id: number): void {
@@ -48,7 +49,8 @@ export function markDone(id: number): void {
          todo.done = true;
          saveTodosToFile();
       }
-   })
+   });
+   console.log('MARKING TODO AS DONE!');
 }
 
 export function resetTodos(): void {
@@ -56,6 +58,7 @@ export function resetTodos(): void {
       todos.pop();
    }
    id = 1;
+   console.log('RESETING TODOS!');
    saveTodosToFile();
 }
 
@@ -64,5 +67,6 @@ function clearOldTodos(): void {
       const createdOn = new Date(todo.createdOn);
       return createdOn.getDate() >= new Date().getDate();
    });
+   console.log('CLEARING OLD TODOS!');
    saveTodosToFile();
 }

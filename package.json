@@ -1,8 +1,8 @@
 {
-  "name": "todo-cli",
+  "name": "todo-in-cli",
   "version": "1.0.4",
   "bin": {
-    "todo-cli": "./dist/index.js"
+    "todo": "./dist/index.js"
   },
   "description": "",
   "main": "index.js",

@@ -69,9 +69,11 @@ function resetTodos() {
     saveTodosToFile();
 }
 function clearOldTodos() {
-    todos.filter((todo) => {
-        const createdOn = new Date(todo.createdOn);
-        return createdOn.getDate() >= new Date().getDate();
+    const now = Date.now();
+    const cutoff = now - 24 * 60 * 60 * 1000;
+    todos = todos.filter((todo) => {
+        const createdOn = new Date(todo.createdOn).getTime();
+        return createdOn >= cutoff;
     });
     console.log('CLEARING OLD TODOS!');
     saveTodosToFile();

@@ -10,9 +10,14 @@ exports.markDone = markDone;
 exports.resetTodos = resetTodos;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const os_1 = __importDefault(require("os"));
 let todos = [];
 let id = 1;
-const FILE_PATH = path_1.default.join(__dirname, "..", "todos.json");
+const CONFIG_DIR = path_1.default.join(os_1.default.homedir(), ".my-todo-cli");
+const FILE_PATH = path_1.default.join(CONFIG_DIR, "todos.json");
+if (!fs_1.default.existsSync(CONFIG_DIR)) {
+    fs_1.default.mkdirSync(CONFIG_DIR);
+}
 function loadTodosFromFile() {
     if (fs_1.default.existsSync(FILE_PATH)) {
         const data = fs_1.default.readFileSync(FILE_PATH, "utf-8");

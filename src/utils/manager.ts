@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 
+//error in clear old todos - remove logs
 
 let todos: Todo[] = [];
 let id: number = 1;
@@ -76,6 +77,5 @@ function clearOldTodos(): void {
       const createdOn = new Date(todo.createdOn).getTime();
       return createdOn >= cutoff;
    });
-   console.log('CLEARING OLD TODOS!');
    saveTodosToFile();
 }

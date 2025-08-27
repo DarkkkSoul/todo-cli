@@ -11,6 +11,7 @@ exports.resetTodos = resetTodos;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const os_1 = __importDefault(require("os"));
+//error in clear old todos - remove logs
 let todos = [];
 let id = 1;
 const CONFIG_DIR = path_1.default.join(os_1.default.homedir(), ".my-todo-cli");
@@ -75,6 +76,5 @@ function clearOldTodos() {
         const createdOn = new Date(todo.createdOn).getTime();
         return createdOn >= cutoff;
     });
-    console.log('CLEARING OLD TODOS!');
     saveTodosToFile();
 }

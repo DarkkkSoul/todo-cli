@@ -1,67 +1,42 @@
 #!/usr/bin/env node
-
-import readline from 'readline';
 import { addTodo, init, markDone, resetTodos, viewTodo } from './utils/manager';
 import { guidelines } from './utils/guidelines';
+import { Command } from 'commander';
 
-const rl = readline.createInterface({
-   input: process.stdin,
-   output: process.stdout
-});
+const program = new Command();
 
-function showMenu() {
-   console.log('------------------------------------------------');
-   console.log('1. Add a Todo');
-   console.log('2. View the Todos');
-   console.log('3. Mark as Completed');
-   console.log('4. Reset the Todos');
-   console.log('5. Exit');
-   console.log('------------------------------------------------');
+init();
+
+program
+   .name('todos')
+   .description('A simple CLI to manage your todos')
+   .version('3.0.0')
+   .option('-a, --add <title>', 'Add a todo')
+   .option('-v, --view', 'View all todos')
+   .option('-m, --mark <id>', 'Mark a todo as done by id')
+   .option('-r, --reset', 'Reset all todos')
+   .option('-g, --guidelines', 'View guidelines for using the todo app');
+
+program.parse();
+
+const options = program.opts();
+
+if (options.add) {
+   addTodo(options.add);
 }
 
-function prompt(): void {
-   showMenu();
-   rl.question('Choose an option: ', (option) => {
-      switch (option.trim()) {
-         case '1':
-            rl.question('Enter todo title: ', (title) => {
-               addTodo(title.trim());
-               prompt();
-            });
-            break;
-         case '2':
-            viewTodo();
-            prompt();
-            break;
-         case '3':
-            viewTodo();
-            rl.question('Enter ID of the Todo to be marked as Completed: ', (id) => {
-               markDone(Number(id));
-               prompt();
-            });
-            break;
-         case '4':
-            resetTodos();
-            prompt();
-            break;
-         case '5':
-            console.log('Exiting...');
-            rl.close();
-            break;
-         default:
-            console.log('Invalid option. Please try again.');
-            prompt();
-      }
-   });
+if (options.view) {
+   viewTodo();
 }
 
-function main() {
-   console.log('WELCOME to the TODO CLI!');
-   console.log('This application allows you to manage your todos easily.');
+if (options.mark) {
+   markDone(Number(options.mark));
+}
+
+if (options.reset) {
+   resetTodos();
+}
+
+if (options.guidelines) {
    guidelines();
-   console.log('Please select an option from the menu:');
-   init();
-   prompt();
 }
-
-main();

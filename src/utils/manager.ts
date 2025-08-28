@@ -52,13 +52,23 @@ export function viewTodo(): void {
 }
 
 export function markDone(id: number): void {
+   if (id < 1) {
+      console.log('INVALID ID!');
+      return;
+   }
+   let found = false;
    todos.forEach((todo) => {
       if (id === todo.id) {
          todo.done = true;
-         saveTodosToFile();
+         found = true;
       }
    });
-   console.log('MARKING TODO AS DONE!');
+   if (!found) {
+      console.log('INVALID ID!');
+      return;
+   }
+   saveTodosToFile();
+   console.log('MARKED TODO AS DONE!');
 }
 
 export function resetTodos(): void {
